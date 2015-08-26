@@ -9,8 +9,7 @@ import java.io.Reader;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import jdk.internal.org.xml.sax.InputSource;
-
+import org.xml.sax.InputSource;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class MainReadXML {
@@ -33,7 +32,8 @@ public class MainReadXML {
 			InputSource is = new InputSource(reader);
 			is.setEncoding("UTF-8");
 			
-			saxParser.parse(file, handle);
+			//saxParser.parse(file, handle);
+			saxParser.parse(is, handle);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
