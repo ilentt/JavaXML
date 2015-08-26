@@ -1,9 +1,15 @@
 package ilentt.ilenlab.com.xml.sax;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+
+import jdk.internal.org.xml.sax.InputSource;
 
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -20,6 +26,13 @@ public class MainReadXML {
 			DefaultHandler handle = new SaxHandle();
 			
 			File file = new File("DepartmentData.xml");
+			
+			// Parser Unicode XML file
+			InputStream inputStream = new FileInputStream(file);
+			Reader reader = new InputStreamReader(inputStream,"UTF-8");
+			InputSource is = new InputSource(reader);
+			is.setEncoding("UTF-8");
+			
 			saxParser.parse(file, handle);
 		}catch(Exception e) {
 			e.printStackTrace();
