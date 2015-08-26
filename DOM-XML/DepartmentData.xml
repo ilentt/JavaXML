@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<department>
+	<employee id="IE001">
+		<empNo>E001</empNo>
+		<empName>Trần Thanh I Len</empName>
+		<hireDate>25-08-2015</hireDate>
+		<salary>100000</salary>
+	</employee>
+	<employee id="IE002">
+		<empNo>E002</empNo>
+		<empName>CAMERON</empName>
+		<hireDate>25-08-2015</hireDate>
+		<salary>50000</salary>
+	</employee>
+</department>
