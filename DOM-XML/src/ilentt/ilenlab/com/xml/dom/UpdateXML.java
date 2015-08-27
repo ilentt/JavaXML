@@ -1,11 +1,11 @@
 package ilentt.ilenlab.com.xml.dom;
 
 import java.io.File;
-//import java.io.FileInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-//import java.io.InputStream;
-//import java.io.InputStreamReader;
-//import java.io.Reader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,7 +21,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-//import org.xml.sax.InputSource;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 public class UpdateXML {
@@ -32,20 +32,20 @@ public class UpdateXML {
 	
 	public void runUpdateXML() {
 		try {
-			//File file = new File("DepartmentData.xml");
-			String xmlFile = "DepartmentData.xml";
+			File file = new File("DepartmentData.xml");
+			//String xmlFile = "DepartmentData.xml";
 			
 			// Parser Unicode XML file
-			/*
+			
 			InputStream inputStream = new FileInputStream(file);
 			Reader reader = new InputStreamReader(inputStream,"UTF-8");
 			InputSource is = new InputSource(reader);
 			is.setEncoding("UTF-8");
-			*/			
+						
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(xmlFile);
-			//Document doc = dBuilder.parse(is);
+			//Document doc = dBuilder.parse(xmlFile);
+			Document doc = dBuilder.parse(is);
 			doc.getDocumentElement().normalize();
 			
 			// get root element
@@ -57,11 +57,11 @@ public class UpdateXML {
 			// update employee attribute
 			NamedNodeMap attribute = employee.getAttributes();
 			Node attrNode = attribute.getNamedItem("id");
-			attrNode.setTextContent("E009");
+			attrNode.setTextContent("IE009");
 			
 			// append new node to staff
 			Element manager = doc.createElement("Manager");
-			manager.appendChild(doc.createTextNode("M001"));
+			manager.appendChild(doc.createTextNode("Trần Thanh I Len"));
 			employee.appendChild(manager);
 			
 			// loop the employee node
@@ -84,7 +84,8 @@ public class UpdateXML {
 			TransformerFactory transformFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(xmlFile));
+			//StreamResult result = new StreamResult(new File(xmlFile));
+			StreamResult result = new StreamResult(file);
 			transformer.transform(source, result);
 			
 			System.out.println("Done!");
